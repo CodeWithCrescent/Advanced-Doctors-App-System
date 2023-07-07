@@ -10,7 +10,7 @@
 Contact me through:
 <ul>
     <li>Email: <a href="mailto:crescent.sambila@gmail.com">crescent.sambila@gmail.com</a></li>
-    <li>Phone: <a href="tel:+255676827992">+255 676 827 992</a></li>
+    <li>Whatsapp: <a href="tel:+255676827992">+255 676 827 992</a></li>
     <li>Instagram: <a href="https://instagram.com/e.sscen__">e.sscen__</a></li>
     <li>Address: <address>123 Inyara St. Iyunga, Mbeya-Town</address></li>
 </ul>
