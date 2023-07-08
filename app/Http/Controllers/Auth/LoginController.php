@@ -66,7 +66,7 @@ class LoginController extends Controller
             }
             elseif (auth()->user()->role == 1)
             {
-                return redirect()->route('doctor')->with('status','Welcome '.auth()->user()->firstname);
+                return redirect()->route('Doctor Dashboard')->with('status','Welcome '.auth()->user()->firstname);
             }
             elseif (auth()->user()->role == 2)
             {

@@ -38,6 +38,7 @@
                 <li class="menu-item {{ (request()->is('admin/dashboard','admin')) ? 'has-active' : '' }} {{ (request()->is('admin/','admin')) ? 'has-active' : '' }}">
                   <a href="{{'dashboard'}}" class="menu-link"><span class="menu-icon fas fa-home"></span> <span class="menu-text">Dashboard</span></a>
                 </li><!-- /.menu-item -->
+                @if(Auth::user()->role == 0)
                 <!-- .menu-item -->
                 <li class="menu-item has-child {{ (request()->is('admin/add-doctor','admin')) ? 'has-active' : '' }} {{ (request()->is('admin/view-doctors','admin')) ? 'has-active' : '' }}">
                   <a href="#" class="menu-link"><span class="menu-icon fas fa-user-md"></span> <span class="menu-text">Doctors</span></a> <!-- child menu -->
@@ -62,10 +63,18 @@
                     </li>
                   </ul><!-- /child menu -->
                 </li><!-- /.menu-item -->
+                @endif
                 <!-- .menu-item -->
                 <li class="menu-item {{ (request()->is('admin/view-appointments','admin')) ? 'has-active' : '' }}">
                   <a href="{{'view-appointments'}}" class="menu-link"><span class="menu-icon fas fa-calendar"></span> <span class="menu-text">Appointments</span> <span class="badge badge-warning">New</span></a> <!-- child menu -->
                 </li><!-- /.menu-item -->
+                @if(Auth::user()->role == 1)
+                <!-- .menu-item -->
+                <li class="menu-item {{ (request()->is('admin/schedules','admin')) ? 'has-active' : '' }}">
+                  <a href="{{'view-schedules'}}" class="menu-link"><span class="menu-icon fas fa-user-md"></span> <span class="menu-text">My schedules</span> <span class="badge badge-info">New</span></a> <!-- child menu -->
+                </li><!-- /.menu-item -->
+                @endif
+                @if(Auth::user()->role == 0)
                 <!-- .menu-item -->
                 <li class="menu-item {{ (request()->is('admin/settings','admin')) ? 'has-active' : '' }}">
                   <a href="{{'settings'}}" class="menu-link"><span class="menu-icon oi oi-wrench"></span> <span class="menu-text">Settings</span></a>
@@ -74,7 +83,7 @@
                 <li class="menu-item {{ (request()->is('admin/clients','admin')) ? 'has-active' : '' }}">
                   <a href="{{'clients'}}" class="menu-link"><span class="menu-icon fas fa-user"></span> <span class="menu-text">Clients</span></a>
                 </li><!-- /.menu-item -->
-
+                @endif
                 <!-- .menu-header -->
                 <!-- <li class="menu-header">Interfaces </li>/.menu-header -->
 

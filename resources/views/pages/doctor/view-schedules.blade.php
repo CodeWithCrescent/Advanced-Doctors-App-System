@@ -27,7 +27,6 @@
                                 <th>SN</th>
                                 <th>Day</th>
                                 <th>Date</th>
-                                <th>Doctor Name</th>
                                 <th>Start Time</th>
                                 <th>End Time</th>
                                 <th>Max. Bookings</th>
@@ -45,11 +44,9 @@
                                 <td>$320,800</td>
                                 <td>$320,800</td>
                                 <td>$320,800</td>
-                                <td>$320,800</td>
                             </tr><tr>
                                 <td>2.</td>
                                 <td>System</td>
-                                <td>Edinburgh</td>
                                 <td>Edinburgh</td>
                                 <td>Edinburgh</td>
                                 <td>Edinburgh</td>

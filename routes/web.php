@@ -32,8 +32,11 @@ Route::group(['prefix'=>'admin','middleware'=>['PreventBackHistory','IsAdmin']],
     Route::get('clients', [App\Http\Controllers\AdminController::class, 'viewClients'])->name('All Clients');
 });
 
-Route::group(['middleware'=>['PreventBackHistory','IsDoctor']], function(){
-    Route::get('/doctor', [App\Http\Controllers\HomeController::class, 'doctor'])->name('doctor');
+Route::group(['prefix'=>'doctor','middleware'=>['PreventBackHistory','IsDoctor']], function(){
+    Route::get('/', [App\Http\Controllers\DoctorController::class, 'index'])->name('Doctor Dashboard');
+    Route::get('dashboard', [App\Http\Controllers\DoctorController::class, 'index'])->name('Doctor Dashboard');
+    Route::get('view-appointments', [App\Http\Controllers\DoctorController::class, 'viewAppointments'])->name('View Appointments');
+    Route::get('view-schedules', [App\Http\Controllers\DoctorController::class, 'viewSchedules'])->name('My Schedules');
 });
 
 Route::group(['middleware'=>['PreventBackHistory','IsClient']], function(){
