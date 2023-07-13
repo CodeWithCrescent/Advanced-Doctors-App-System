@@ -35,7 +35,7 @@ class User extends Authenticatable
     }
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are mass assignable or added to database.
      *
      * @var array<int, string>
      */
@@ -49,7 +49,8 @@ class User extends Authenticatable
         'gender',
         'password',
     ];
-    
+
+    //These are assigned values by defaults
     protected $attributes = [
         'role' => '0',
         'password' => '123456',
