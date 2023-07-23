@@ -32,31 +32,28 @@
                                 <th>End Time</th>
                                 <th>Max. Bookings</th>
                                 <th>Rem. Bookings</th>
+                                <th>Description</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach ($datas as $key => $data)
                             <tr>
-                                <td>1.</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>2011-04-25</td>
-                                <td>$320,800</td>
-                                <td>$320,800</td>
-                                <td>$320,800</td>
-                                <td>$320,800</td>
-                                <td>$320,800</td>
-                            </tr><tr>
-                                <td>2.</td>
-                                <td>System</td>
-                                <td>Edinburgh</td>
-                                <td>Edinburgh</td>
-                                <td>Edinburgh</td>
-                                <td>Edinburgh</td>
-                                <td>Edinburgh</td>
-                                <td>2011-04-25</td>
-                                <td>$320,800</td>
+                                <td>{{ ++$key }}</td>
+                                <td>{{ date('D', strtotime($data->scheduled_date)) }}</td>
+                                <td>{{ date('d-m-Y', strtotime($data->scheduled_date)) }}</td>
+                                <td>{{ $data->initial}}{{'. '}}{{$data->lastname .', '}}{{strtoupper($data->firstname)}}</td>
+                                <td>{{ date('h:i A', strtotime($data->start_time)) }}</td>
+                                <td>{{ date('h:i A', strtotime($data->end_time)) }}</td>
+                                <td>{{ $data->maximum_bookings }}</td>
+                                <td>{{ $data->maximum_bookings }}</td>
+                                <td>{{ $data->description }}</td>
+                                <td class="align-middle text-center">
+                                  <a href="#" class="btn btn-sm btn-icon btn-outline-secondary" title="Edit"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> 
+                                  <a href="#" class="btn btn-sm btn-icon btn-outline-danger" title="Delete"><i class="far fa-trash-alt"></i> <span class="sr-only">Delete</span></a>
+                                </td>
                             </tr>
+                          @endforeach
                         </tbody>
                     </table>
                   </div><!-- /.card-body -->

@@ -24,7 +24,7 @@
                     <table id="doctors-table" class="table table-stripped table-responsive-sm nowrap" style="width:100%">
                         <thead>
                             <tr>
-                                <th>Appointment No.</th>
+                                <th>SN</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Age</th>
@@ -35,25 +35,23 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1.</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>2011-04-25</td>
-                                <td>$320,800</td>
-                                <td>$320,800</td>
-                                <td>$320,800</td>
-                                <td>$320,800</td>
-                            </tr><tr>
-                                <td>2.</td>
-                                <td>System</td>
-                                <td>$320,800</td>
-                                <td>$320,800</td>
-                                <td>System</td>
-                                <td>System</td>
-                                <td>Edinburgh</td>
-                                <td>Edinburgh</td>
+                        @foreach ($datas as $key => $data)
+                            <tr><!-- birthdate->diffForHumans() -->
+                                <td>{{ ++$key }}</td>
+                                <td>{{ $data->initial}}{{'. '}}{{$data->lastname .', '}}{{strtoupper($data->firstname)}}</td>
+                                <td>{{ $data->email }}</td>
+                                <td>{{ $data->birthdate }}</td>
+                                <td>
+                                  @if($data->initial == 'Mr') {{__('Male')}} @elseif($data->initial == 'Ms') {{__('Female')}} @endif
+                                </td>
+                                <td>{{ $data->address }}</td>
+                                <td>{{ $data->phone }}</td>
+                                <td class="align-middle text-center">
+                                  <a href="#" class="btn btn-sm btn-icon btn-outline-secondary" title="Edit"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> 
+                                  <a href="#" class="btn btn-sm btn-icon btn-outline-primary" title="Disable"><i class="far fa-trash-alt"></i> <span class="sr-only">Disable</span></a>
+                                </td>
                             </tr>
+                          @endforeach
                         </tbody>
                     </table>
                   </div><!-- /.card-body -->

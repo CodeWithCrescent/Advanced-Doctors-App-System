@@ -16,9 +16,8 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->references('id')->on('users')->onDelete('cascade');
-            $table->string('address');
-            $table->string('birthdate');
-            $table->timestamps();
+            $table->string('address')->nullable();
+            $table->string('birthdate')->nullable();
         });
     }
 
@@ -29,7 +28,7 @@ class CreateClientsTable extends Migration
      */
     public function down()
     {
-        Schema::table('patients', function (Blueprint $table) {
+        Schema::table('clients', function (Blueprint $table) {
             $table->dropForeign(['user_id']);
         });
     }

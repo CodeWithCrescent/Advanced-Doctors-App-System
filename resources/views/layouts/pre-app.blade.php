@@ -35,7 +35,6 @@
 
 <body>
 
-@if (Route::CurrentRouteName() === "Doctors Appointment System")
   <!-- ======= Top Bar ======= -->
   <div id="topbar" class="d-flex align-items-center fixed-top">
     <div class="container d-flex justify-content-between">
@@ -51,13 +50,12 @@
       </div>
     </div>
   </div>
-@endif
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="{{'/'}}">Doctors App</a></h1>
+      <h1 class="logo me-auto"><a href="{{'/'}}">Doctors<span class="d-none d-md-inline"> App</span></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="" alt="" class="img-fluid"></a>-->
 
@@ -194,6 +192,55 @@
 
   <!-- Template Main JS File -->
   <script src="{{ asset('js/main.js') }}"></script>
+  <script>
+    $(function() {
+      $('#ClientForm').validate({
+        rules: {
+          name: {
+            required: true,
+          },
+          initial: {
+            required: true,
+          },
+          email: {
+            required: true,
+            email: true,
+          },
+          password: {
+            required: true,
+            minlength: 5
+          },
+        },
+        messages: {
+          email: {
+            required: "Please enter a email address",
+            email: "Please enter a vaild email address"
+          },
+          name: {
+            required: "Please enter your name",
+          },
+          initial: {
+            required: "Please select initial",
+          },
+          phone: {
+            required: "Please provide password for security",
+            minlength: "Password must be more than 5 characters"
+          },
+        },
+        errorElement: 'span',
+          errorPlacement: function(error, element) {
+          error.addClass('invalid-feedback');
+          element.closest('.js-error').append(error);
+          },
+          highlight: function(element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+          },
+          unhighlight: function(element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+          }
+      });
+    })
+  </script>
 </body>
 
 </html>

@@ -6,7 +6,7 @@
           <div class="top-bar-brand">
             <!-- toggle aside menu -->
             <button class="hamburger hamburger-squeeze mr-2" type="button" data-toggle="aside-menu" aria-label="toggle aside menu"><span class="hamburger-box"><span class="hamburger-inner"></span></span></button> <!-- /toggle aside menu -->
-            <a href="index-2.html"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="28" viewbox="0 0 351 100">
+            <a href="{{'/'}}"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="28" viewbox="0 0 351 100">
                 <defs>
                   <path id="a" d="M156.538 45.644v1.04a6.347 6.347 0 0 1-1.847 3.98L127.708 77.67a6.338 6.338 0 0 1-3.862 1.839h-1.272a6.34 6.34 0 0 1-3.862-1.839L91.728 50.664a6.353 6.353 0 0 1 0-9l9.11-9.117-2.136-2.138a3.171 3.171 0 0 0-4.498 0L80.711 43.913a3.177 3.177 0 0 0-.043 4.453l-.002.003.048.047 24.733 24.754-4.497 4.5a6.339 6.339 0 0 1-3.863 1.84h-1.27a6.337 6.337 0 0 1-3.863-1.84L64.971 50.665a6.353 6.353 0 0 1 0-9l26.983-27.008a6.336 6.336 0 0 1 4.498-1.869c1.626 0 3.252.622 4.498 1.87l26.986 27.006a6.353 6.353 0 0 1 0 9l-9.11 9.117 2.136 2.138a3.171 3.171 0 0 0 4.498 0l13.49-13.504a3.177 3.177 0 0 0 .046-4.453l.002-.002-.047-.048-24.737-24.754 4.498-4.5a6.344 6.344 0 0 1 8.996 0l26.983 27.006a6.347 6.347 0 0 1 1.847 3.98zm-46.707-4.095l-2.362 2.364a3.178 3.178 0 0 0 0 4.501l2.362 2.364 2.361-2.364a3.178 3.178 0 0 0 0-4.501l-2.361-2.364z"></path>
                 </defs>
@@ -274,7 +274,15 @@
               </ul><!-- /.nav -->
               <!-- .btn-account -->
               <div class="dropdown d-none d-md-flex">
-                <button class="btn-account" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="user-avatar user-avatar-md"><img src="assets/images/avatars/profile.jpg" alt=""></span> <span class="account-icon"><span class="fa fa-caret-down fa-lg"></span></span>
+                <button class="btn-account" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="user-avatar user-avatar-md">
+                  @if(Auth::user()->role == 0 || Auth::user()->role == 1)
+                  <img src="{{ asset('img/user-profile/admin.png')}}" alt="">
+                  @elseif(Auth::user()->initial == 'Ms')
+                  <img src="{{ asset('img/user-profile/female.jpg')}}" alt="">
+                  @else
+                  <img src="{{ asset('img/user-profile/male.jpg')}}" alt="">
+                  @endif
+                </span> <span class="account-icon"><span class="fa fa-caret-down fa-lg"></span></span>
                   <span class="account-summary pr-lg-4 d-none d-lg-block"><span class="account-name">{{ Auth()->user()->firstname }} {{ Auth()->user()->lastname }}</span> 
                   <span class="account-description">@if(Auth::user()->role == 0) Admin @elseif(Auth::user()->role == 1) Doctor @else Client @endif</span></span>
                 </button> <!-- .dropdown-menu -->

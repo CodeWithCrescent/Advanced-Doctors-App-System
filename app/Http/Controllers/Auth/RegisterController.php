@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\models\Client;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -29,7 +31,12 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    protected function redirectTo()
+    {
+        // Redirect to the intended URL after registration
+        return session('url.intended', '/');
+    }
 
     /**
      * Create a new controller instance.
@@ -50,6 +57,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'initial' => 'required',
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:5', 'confirmed'],
@@ -79,15 +87,20 @@ class RegisterController extends Controller
             return redirect()->back()->withErrors(['name' => 'Invalid! Maximum three names required']);
         }
         
-        return User::create([
-            // 'initial' => $data['initial'],
+        $user = User::create([
+            'initial' => $data['initial'],
             'firstname' => $firstname,
             'middlename' => $middlename,
             'lastname' => $lastname,
-            'phone' => $data['phone'],
             'email' => $data['email'],
-            // 'address' => $data['address'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $client = new Client([
+            'address' => $data['address'],
+            'birthdate' => $data['birthdate'],
+        ]);
+    
+        $user->client()->save($client);
     }
 }

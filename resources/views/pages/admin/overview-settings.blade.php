@@ -22,7 +22,7 @@
                   </div><!-- /grid column -->
                   <!-- grid column -->
                   <div class="col">
-                    <h1 class="page-title"> Creative Division </h1>
+                    <h1 class="page-title"> Overview Settings </h1>
                     <p class="text-muted"> We make stunning and cool responsive web and app design which suitable for any project purpose for your business. </p>
                   </div><!-- /grid column -->
                 </div><!-- /grid row -->
@@ -45,30 +45,30 @@
                     <!-- metric column -->
                     <div class="col">
                       <!-- .metric -->
-                      <a href="page-team-members.html" class="metric metric-bordered align-items-center">
-                        <h2 class="metric-label"> Members </h2>
+                      <a href="#departments" class="metric metric-bordered align-items-center">
+                        <h2 class="metric-label"> Departments </h2>
                         <p class="metric-value h3">
-                          <sub><i class="oi oi-people"></i></sub> <span class="value">12</span>
+                          <sub><i class="oi oi-people"></i></sub> <span class="value">{{$departments->count()}}</span>
                         </p>
                       </a> <!-- /.metric -->
                     </div><!-- /metric column -->
                     <!-- metric column -->
                     <div class="col">
                       <!-- .metric -->
-                      <a href="page-team-projects.html" class="metric metric-bordered align-items-center">
-                        <h2 class="metric-label"> Projects </h2>
+                      <a href="#specialities" class="metric metric-bordered align-items-center">
+                        <h2 class="metric-label"> Specialities </h2>
                         <p class="metric-value h3">
-                          <sub><i class="oi oi-fork"></i></sub> <span class="value">26</span>
+                          <sub><i class="oi oi-fork"></i></sub> <span class="value">{{$specialities->count()}}</span>
                         </p>
                       </a> <!-- /.metric -->
                     </div><!-- /metric column -->
                     <!-- metric column -->
                     <div class="col">
                       <!-- .metric -->
-                      <a href="page-team-projects.html" class="metric metric-bordered align-items-center">
-                        <h2 class="metric-label"> Active Projects </h2>
+                      <a href="#offices" class="metric metric-bordered align-items-center">
+                        <h2 class="metric-label"> Offices </h2>
                         <p class="metric-value h3">
-                          <sub><i class="oi oi-timer fa-lg"></i></sub> <span class="value">5</span>
+                          <sub><i class="oi oi-timer fa-lg"></i></sub> <span class="value">{{$offices->count()}}</span>
                         </p>
                       </a> <!-- /.metric -->
                     </div><!-- /metric column -->
@@ -115,7 +115,7 @@
               <!-- .page-section -->
               <div class="page-section tab-pane fade" id="departments">
                 <!-- .Add Department form -->
-                <form class="section-block d-flex justify-content-between align-items-center my-3">
+                <form method="post" action="{{ route('Dashboard | Add Department') }}" class="section-block d-flex justify-content-between align-items-center my-3">
                     <!-- .col -->
                     <div class="col">
                       <!-- .has-clearable -->
@@ -146,15 +146,16 @@
                               </tr>
                           </thead>
                           <tbody>
+                            @foreach($departments as $key => $department)
                               <tr>
-                                  <td>1.</td>
-                                  <td>System Architect System Architect</td>
-                                  <td>Edinburgh</td>
-                              </tr><tr>
-                                  <td>2.</td>
-                                  <td>System</td>
-                                  <td>Edinburgh</td>
+                                <td>{{ ++$key }}</td>
+                                <td>{{ $department->department_name }}</td>
+                                <td class="align-middle text-right">
+                                  <a href="#" class="btn btn-sm btn-icon btn-outline-secondary" title="Edit"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> 
+                                  <a href="#" class="btn btn-sm btn-icon btn-outline-danger" title="Delete"><i class="far fa-trash-alt"></i> <span class="sr-only">Delete</span></a>
+                                </td>
                               </tr>
+                            @endforeach
                           </tbody>
                       </table>
                     </div><!-- /.card-body -->
@@ -164,16 +165,32 @@
               <!-- .page-section -->
               <div class="page-section tab-pane fade" id="specialities">
                 <!-- .Add speciality form -->
-                <form class="section-block d-flex justify-content-between align-items-center my-3">
+                <form method="post" action="{{ route('Dashboard | Add Speciality') }}" class="section-block d-flex justify-content-between align-items-center my-3">
+                    @csrf
                     <!-- .col -->
-                    <div class="col">
+                    <div class="col-4">
+                      <!-- .has-clearable -->
+                      <div class="has-clearable">
+                          <select id="department" name="department" class="form-control @error('department') is-invalid @enderror custom-select" required>
+                            <option hidden>Select Department</option>
+                            @if (!empty($departments) && $departments->count())
+                            @foreach($departments as $department)
+                            <option value="{{ $department->department_id }}" {{ old('department') == $department->id ? 'selected' : '' }}>{{ $department->department_name}} </option>
+                            @endforeach
+                            @else
+                            <option disabled>No departments</option>
+                            @endif
+                          </select>
+                      </div><!-- /.has-clearable -->
+                    </div><!-- /.col-4 -->
+                    <!-- .col -->
+                    <div class="col-5">
                       <!-- .has-clearable -->
                       <div class="has-clearable">
                         <button type="button" class="close" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times-circle"></i></span></button>
-                          @csrf
-                            <input type="text" id="speciality" name="speciality" value="{{ old('speciality') }}" class="form-control" placeholder="Enter speciality name" required>
+                            <input type="text" id="speciality_name" name="speciality_name" value="{{ old('speciality_name') }}" class="form-control" placeholder="Enter speciality name" required>
                       </div><!-- /.has-clearable -->
-                    </div><!-- /.col -->
+                    </div><!-- /.col-5 -->
                     <!-- .col-auto -->
                     <div class="col-auto">
                       <button type="submit" class="btn btn-primary">Add Speciality</button>
@@ -196,17 +213,17 @@
                               </tr>
                           </thead>
                           <tbody>
+                            @foreach($specialities as $key => $speciality)
                               <tr>
-                                  <td>1.</td>
-                                  <td>System Architectjdksjjjjjjjeiieeooeoeeooeoeoeoeoeoeoe</td>
-                                  <td>Edinburghjklggijregirojgiregijreijger</td>
-                                  <td>Edinburghfgijigrijgijerijgijerjigij</td>
-                              </tr><tr>
-                                  <td>2.</td>
-                                  <td>Systemjrufufufrfrfufgg</td>
-                                  <td>System</td>
-                                  <td>Edinburgh</td>
+                                <td>{{ ++$key }}</td>
+                                <td>{{ $speciality->speciality_name }}</td>
+                                <td>{{ $speciality->department_name }}</td>
+                                <td class="align-middle text-right">
+                                  <a href="#" class="btn btn-sm btn-icon btn-outline-secondary" title="Edit"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> 
+                                  <a href="#" class="btn btn-sm btn-icon btn-outline-danger" title="Delete"><i class="far fa-trash-alt"></i> <span class="sr-only">Delete</span></a>
+                                </td>
                               </tr>
+                            @endforeach
                           </tbody>
                       </table>
                     </div><!-- /.card-body -->
@@ -216,14 +233,31 @@
               <!-- .page-section -->
               <div class="page-section tab-pane fade" id="offices">
                 <!-- .Add office form -->
-                <form class="section-block d-flex justify-content-between align-items-center my-3">
+                <form method="post" action="{{ route('Dashboard | Add Office') }}" class="section-block d-flex justify-content-between align-items-center my-3">
+                    @csrf
                     <!-- .col -->
-                    <div class="col">
+                    <div class="col-4">
+                      <!-- .has-clearable -->
+                      <div class="has-clearable">
+                          <select id="department" name="department" class="form-control @error('department') is-invalid @enderror custom-select" required>
+                            <option hidden>Select Department</option>
+                            @if (!empty($departments) && $departments->count())
+                            @foreach($departments as $department)
+                            <option value="{{ $department->department_id }}" {{ old('department') == $department->id ? 'selected' : '' }}>{{ $department->department_name}} </option>
+                            @endforeach
+                            @else
+                            <option disabled>No departments</option>
+                            @endif
+                          </select>
+                      </div><!-- /.has-clearable -->
+                    </div><!-- /.col -->
+                    <!-- .col -->
+                    <div class="col-5">
                       <!-- .has-clearable -->
                       <div class="has-clearable">
                         <button type="button" class="close" aria-label="Close"><span aria-hidden="true"><i class="fa fa-times-circle"></i></span></button>
                           @csrf
-                            <input type="text" id="office" name="office" value="{{ old('office') }}" class="form-control" placeholder="Enter office name" required>
+                            <input type="text" id="office_name" name="office_name" value="{{ old('office_name') }}" class="form-control" placeholder="Enter office name" required>
                       </div><!-- /.has-clearable -->
                     </div><!-- /.col -->
                     <!-- .col-auto -->
@@ -248,17 +282,17 @@
                               </tr>
                           </thead>
                           <tbody>
+                            @foreach($offices as $key => $office)
                               <tr>
-                                  <td>1.</td>
-                                  <td>System Architect</td>
-                                  <td>System Architect</td>
-                                  <td>Edinburgh</td>
-                              </tr><tr>
-                                  <td>2.</td>
-                                  <td>System Architect</td>
-                                  <td>System</td>
-                                  <td>Edinburgh</td>
+                                <td>{{ ++$key }}</td>
+                                <td>{{ $office->office_name }}</td>
+                                <td>{{ $office->department_name }}</td>
+                                <td class="align-middle text-right">
+                                  <a href="#" class="btn btn-sm btn-icon btn-outline-secondary" title="Edit"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> 
+                                  <a href="#" class="btn btn-sm btn-icon btn-outline-danger" title="Delete"><i class="far fa-trash-alt"></i> <span class="sr-only">Delete</span></a>
+                                </td>
                               </tr>
+                            @endforeach
                           </tbody>
                       </table>
                     </div><!-- /.card-body -->

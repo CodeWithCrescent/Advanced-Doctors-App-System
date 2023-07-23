@@ -15,13 +15,23 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
     
     /**
-     * Get all of the DoctorInformations for the User
+     * Get all of the Doctor Informations as User
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function doctor(): HasOne
     {
         return $this->hasOne(Doctor::class);
+    }
+
+    /**
+     * Get all of the Client Informations as User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function client(): HasOne
+    {
+        return $this->hasOne(Client::class);
     }
 
     // Btn get and Attribute is variable name Body

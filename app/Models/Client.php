@@ -7,18 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Patient extends Model
+class Client extends Model
 {
     use HasFactory;
 
     /**
-     * Get all of the Appointments for the Patient
+     * Get the user that owns the Client
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function Appointments(): HasMany
+    public function user(): BelongsTo
     {
-        return $this->hasMany(Appointment::class);
+        return $this->BelongsTo(User::class);
     }
 
     // Btn get and Attribute is variable name Body
@@ -36,15 +36,10 @@ class Patient extends Model
      *
      * @var array<int, string>
      */
-    protected $table = 'patients';
+    protected $table = 'clients';
         
     protected $fillable = [
-        'speciality_name',
-        'department_id',
-        'added_by',
-    ];
-    
-    protected $attributes = [
-        'added_by' => 'Super Admin',
+        'address',
+        'birthdate',
     ];
 }

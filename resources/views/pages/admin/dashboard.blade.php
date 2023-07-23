@@ -18,23 +18,23 @@
                       <div class="dropdown-menu dropdown-menu-right dropdown-menu-md stop-propagation">
                         <div class="dropdown-arrow"></div><!-- .custom-control -->
                         <div class="custom-control custom-radio">
-                          <input type="radio" class="custom-control-input" id="dpToday" name="dpFilter" data-start="2019/03/27" data-end="2019/03/27"> <label class="custom-control-label d-flex justify-content-between" for="dpToday"><span>Today</span> <span class="text-muted">Mar 27</span></label>
+                          <input type="radio" class="custom-control-input" id="dpToday" name="dpFilter" data-start="2019/03/27" data-end="2019/03/27"> <label class="custom-control-label d-flex justify-content-between" for="dpToday"><span>Today</span> <span class="text-muted">July 17</span></label>
                         </div><!-- /.custom-control -->
                         <!-- .custom-control -->
                         <div class="custom-control custom-radio">
-                          <input type="radio" class="custom-control-input" id="dpYesterday" name="dpFilter" data-start="2019/03/26" data-end="2019/03/26"> <label class="custom-control-label d-flex justify-content-between" for="dpYesterday"><span>Yesterday</span> <span class="text-muted">Mar 26</span></label>
+                          <input type="radio" class="custom-control-input" id="dpYesterday" name="dpFilter" data-start="2019/03/26" data-end="2019/03/26"> <label class="custom-control-label d-flex justify-content-between" for="dpYesterday"><span>Yesterday</span> <span class="text-muted">July 16</span></label>
                         </div><!-- /.custom-control -->
                         <!-- .custom-control -->
                         <div class="custom-control custom-radio">
-                          <input type="radio" class="custom-control-input" id="dpWeek" name="dpFilter" data-start="2019/03/21" data-end="2019/03/27" checked> <label class="custom-control-label d-flex justify-content-between" for="dpWeek"><span>This Week</span> <span class="text-muted">Mar 21-27</span></label>
+                          <input type="radio" class="custom-control-input" id="dpWeek" name="dpFilter" data-start="2019/03/21" data-end="2019/03/27" checked> <label class="custom-control-label d-flex justify-content-between" for="dpWeek"><span>This Week</span> <span class="text-muted">July 16-23</span></label>
                         </div><!-- /.custom-control -->
                         <!-- .custom-control -->
                         <div class="custom-control custom-radio">
-                          <input type="radio" class="custom-control-input" id="dpMonth" name="dpFilter" data-start="2019/03/01" data-end="2019/03/27"> <label class="custom-control-label d-flex justify-content-between" for="dpMonth"><span>This Month</span> <span class="text-muted">Mar 1-31</span></label>
+                          <input type="radio" class="custom-control-input" id="dpMonth" name="dpFilter" data-start="2019/03/01" data-end="2019/03/27"> <label class="custom-control-label d-flex justify-content-between" for="dpMonth"><span>This Month</span> <span class="text-muted">July 1-31</span></label>
                         </div><!-- /.custom-control -->
                         <!-- .custom-control -->
                         <div class="custom-control custom-radio">
-                          <input type="radio" class="custom-control-input" id="dpYear" name="dpFilter" data-start="2019/01/01" data-end="2019/12/31"> <label class="custom-control-label d-flex justify-content-between" for="dpYear"><span>This Year</span> <span class="text-muted">2019</span></label>
+                          <input type="radio" class="custom-control-input" id="dpYear" name="dpFilter" data-start="2019/01/01" data-end="2019/12/31"> <label class="custom-control-label d-flex justify-content-between" for="dpYear"><span>This Year</span> <span class="text-muted">2023</span></label>
                         </div><!-- /.custom-control -->
                         <!-- .custom-control -->
                         <div class="custom-control custom-radio">
@@ -61,9 +61,9 @@
                         <div class="col">
                           <!-- .metric -->
                           <a href="user-teams.html" class="metric metric-bordered align-items-center">
-                            <h2 class="metric-label"> Teams </h2>
+                            <h2 class="metric-label"> Clients </h2>
                             <p class="metric-value h3">
-                              <sub><i class="oi oi-people"></i></sub> <span class="value">8</span>
+                              <sub><i class="oi oi-people"></i></sub> <span class="value">{{$clients->count()}}</span>
                             </p>
                           </a> <!-- /.metric -->
                         </div><!-- /metric column -->
@@ -71,9 +71,9 @@
                         <div class="col">
                           <!-- .metric -->
                           <a href="user-projects.html" class="metric metric-bordered align-items-center">
-                            <h2 class="metric-label"> Projects </h2>
+                            <h2 class="metric-label"> Doctors </h2>
                             <p class="metric-value h3">
-                              <sub><i class="oi oi-fork"></i></sub> <span class="value">12</span>
+                              <sub><i class="oi oi-fork"></i></sub> <span class="value">{{$doctors->count()}}</span>
                             </p>
                           </a> <!-- /.metric -->
                         </div><!-- /metric column -->
@@ -81,9 +81,9 @@
                         <div class="col">
                           <!-- .metric -->
                           <a href="user-tasks.html" class="metric metric-bordered align-items-center">
-                            <h2 class="metric-label"> Active Tasks </h2>
+                            <h2 class="metric-label"> Appointments </h2>
                             <p class="metric-value h3">
-                              <sub><i class="fa fa-tasks"></i></sub> <span class="value">64</span>
+                              <sub><i class="fa fa-tasks"></i></sub> <span class="value">{{$appointments->count()}}</span>
                             </p>
                           </a> <!-- /.metric -->
                         </div><!-- /metric column -->
@@ -93,10 +93,13 @@
                       <!-- .metric -->
                       <a href="user-tasks.html" class="metric metric-bordered">
                         <div class="metric-badge">
-                          <span class="badge badge-lg badge-success"><span class="oi oi-media-record pulse mr-1"></span> ONGOING TASKS</span>
+                          <span class="badge badge-lg badge-success"><span class="oi oi-media-record pulse mr-1"></span> ONGOING SESSIONS</span>
                         </div>
                         <p class="metric-value h3">
-                          <sub><i class="oi oi-timer"></i></sub> <span class="value">8</span>
+                          <sub><i class="oi oi-timer"></i></sub>
+                          <span class="value">
+                            {{$sessions->count()}}
+                          </span>
                         </p>
                       </a> <!-- /.metric -->
                     </div><!-- /metric column -->

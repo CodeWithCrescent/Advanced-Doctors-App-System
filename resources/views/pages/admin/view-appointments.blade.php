@@ -25,11 +25,9 @@
                         <thead>
                             <tr>
                                 <th>SN</th>
-                                <th>Name</th>
                                 <th>Appointment No.</th>
                                 <th>Email</th>
                                 <th>Age</th>
-                                <th>Gender</th>
                                 <th>Department</th>
                                 <th>Date</th>
                                 <th>Time</th>
@@ -39,33 +37,23 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach ($datas as $key => $data)
                             <tr>
-                                <td>1.</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>Edinburgh</td>
-                                <td>2011-04-25</td>
-                                <td>$320,800</td>
-                                <td>$320,800</td>
-                                <td>$320,800</td>
-                                <td>$320,800</td>
-                                <td>$320,800</td>
-                                <td>$320,800</td>
-                                <td>$320,800</td>
-                            </tr><tr>
-                                <td>2.</td>
-                                <td>System</td>
-                                <td>System</td>
-                                <td>System</td>
-                                <td>Edinburgh</td>
-                                <td>Edinburgh</td>
-                                <td>Edinburgh</td>
-                                <td>Edinburgh</td>
-                                <td>Edinburgh</td>
-                                <td>2011-04-25</td>
-                                <td>$320,800</td>
-                                <td>$320,800</td>
+                                <td>++$key</td>
+                                <td>{{$data->appointment_num}}</td>
+                                <td>{{$data->email}}</td>
+                                <td>{{$data->age}}</td>
+                                <td>{{$data->department_name}}</td>
+                                <td>{{$data->date}}</td>
+                                <td>{{$data->start_time}}</td>
+                                <td>{{$data->initial}}{{'. '}}{{$data->lastname .', '}}{{strtoupper($data->firstname)}}</td>
+                                <td>{{$data->status}}</td>
+                                <td class="align-middle text-center">
+                                  <a href="#" class="btn btn-sm btn-icon btn-outline-secondary" title="Edit"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> 
+                                  <a href="#" class="btn btn-sm btn-icon btn-outline-danger" title="Delete"><i class="far fa-trash-alt"></i> <span class="sr-only">Delete</span></a>
+                                </td>
                             </tr>
+                          @endforeach
                         </tbody>
                     </table>
                   </div><!-- /.card-body -->

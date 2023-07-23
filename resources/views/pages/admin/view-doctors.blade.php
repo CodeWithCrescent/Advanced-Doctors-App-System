@@ -28,23 +28,22 @@
                                 <th>Speciality</th>
                                 <th>Department</th>
                                 <th>Office</th>
-                                <th>Action</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach ($datas as $key => $data)
                             <tr>
-                                <td>Tiger Nixon</td>
-                                <td>System Architect</td>
-                                <td>Edinburgh</td>
-                                <td>2011-04-25</td>
-                                <td>$320,800</td>
-                            </tr><tr>
-                                <td>Tiger Nixon</td>
-                                <td>System</td>
-                                <td>Edinburgh</td>
-                                <td>2011-04-25</td>
-                                <td>$320,800</td>
+                                <td>{{$data->initial}}{{'. '}}{{$data->lastname .', '}}{{strtoupper($data->firstname)}}</td>
+                                <td>{{$data->speciality_name}}</td>
+                                <td>{{$data->department_name}}</td>
+                                <td>{{$data->office_name}}</td>
+                                <td class="align-middle text-center">
+                                  <a href="#" class="btn btn-sm btn-icon btn-outline-secondary" title="Edit"><i class="fa fa-pencil-alt"></i> <span class="sr-only">Edit</span></a> 
+                                  <a href="#" class="btn btn-sm btn-icon btn-outline-danger" title="Delete"><i class="far fa-trash-alt"></i> <span class="sr-only">Delete</span></a>
+                                </td>
                             </tr>
+                        @endforeach
                         </tbody>
                     </table>
                   </div><!-- /.card-body -->

@@ -1,23 +1,22 @@
-@extends('layouts.app')
+Hi 👋, I'm Vicent Simon
+A full stack Developer from Tanzania
+💫 About Me:
+🔭 I’m currently working on Nyamnyam E-Commerce Store
+🌱 I’m currently learning Docker Swarm
+💬 Ask me about React, Laravel, PHP, JS, NodeJS, NextJs, NestJS
+📫 How to reach me vicsimon.vs4@gmail.com
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Doctor Dashboard') }}</div>
+🌐 Socials:
+Instagram LinkedIn Quora Reddit Stack Overflow Twitter
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+💻 Tech Stack:
+C CSS3 HTML5 JavaScript PHP Heroku Netlify Vercel DigitalOcean Bootstrap Chakra Chart.js Electron.js Express.js jQuery Laravel MUI Next JS NodeJS React React Native Redux SASS Symfony Webpack Apache Jenkins Nginx MariaDB MongoDB Supabase Redis MySQL Postgres ESLint Docker Trello Postman CodeCov
 
-                    {{ __('You are logged in as DOCTOR!') }}
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+📊 GitHub Stats:
+
+
+
+
+✍️ Random Dev Quote
+
+
